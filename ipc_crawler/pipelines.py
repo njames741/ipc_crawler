@@ -17,7 +17,7 @@ class IpcCrawlerPipeline(object):
 			json.dump(self.dict, load_f, ensure_ascii=False)
 			
 	def process_item(self, item, spider):
-
+[b,e][.+]
 		p = re.compile(r'（.*?）|\[.+\]|\(.*?\)|\(.*?）|（.*?\)')	#去除description中()和[]的內容()
 		number = item.get('number')
 		description = item.get('description').split("→")
@@ -26,18 +26,10 @@ class IpcCrawlerPipeline(object):
 			temp = p.sub(' ', description[i]).replace(" ", "")
 			description[i] = temp if temp else description[i]
 
-			if "(" in description[i] or "（" in description[i]:
+			if "(" in description[i] or "（" in description[i]:	#過濾掉只有前括號的description
 				description[i] = re.split("\(|（",description[i])[0]
 
 		description = " → ".join(description)
-
-
-		# temp = p.sub(' ', description[0]).replace(" ", "")
-		# description[0] = temp if temp else description[0]
-		# temp = p.sub(' ', description[1]).replace(" ", "")
-		# description[1] = temp if temp else description[1]
-
-		# description =  description[0] + " → " + description[1]
 		
 		
 		self.dict[number] = description
