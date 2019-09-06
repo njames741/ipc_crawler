@@ -24,13 +24,6 @@ class IpcSpider(scrapy.Spider):
 			description = table[i].xpath('td/text()').extract()
 
 
-		# for i in response.xpath('//*[@id="ipcTable"]/tr'):
-		# 	number = i.xpath('th/a[1]/text()').extract()
-		# 	description = i.xpath('td/text()').extract()
-		# 	if not number:	#過濾掉第一個，因為第一個是上層number
-		# 		continue
-			# print(number[0])
-			# print(description[0])
 			yield scrapy.Request('https://www.tipo.gov.tw/' + table[i].xpath('th/a[1]/@href').extract()[0], self.parse_level3)
 			# break
 
